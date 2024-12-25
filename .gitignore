@@ -1,0 +1,38 @@
+# Learn more https://docs.github.com/en/get-started/getting-started-with-git/ignoring-files
+
+# dependencies
+ChatGPT/node_modules/
+
+# Expo
+ChatGPT/.expo/
+ChatGPT/dist/
+ChatGPT/web-build/
+ChatGPT/expo-env.d.ts
+
+# Native
+*.orig.*
+*.jks
+*.p8
+*.p12
+*.key
+*.mobileprovision
+
+# Metro
+.metro-health-check*
+
+# debug
+ChatGPT/npm-debug.*
+ChatGPT/yarn-debug.*
+ChatGPT/yarn-error.*
+
+# macOS
+ChatGPT/.DS_Store
+*.pem
+
+# local env files
+ChatGPT/.env*.local
+ChatGPT/.env
+# typescript
+*.tsbuildinfo
+
+ChatGPT/app-example
