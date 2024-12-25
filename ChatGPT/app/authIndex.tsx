@@ -33,7 +33,9 @@ import React, { useState } from 'react';
 
 const Page = () => {
   const { signOut } = useAuth();
-  const [name, setName] = useState('');
+  const [firstName, setFirstName] = useState('');
+  const [lastName, setLastName] = useState('');
+  const [address, setAddress] = useState('');
   const [symptom, setSymptom] = useState('');
   const screenWidth = Dimensions.get('window').width;
 
@@ -57,15 +59,17 @@ const Page = () => {
     console.log("Hello");
     const prompt = `
       You are an OBGYN specialist with over 20 years of experience.The user will either be pregnant or have a partner who is pregnant. 
-      They will share how they are feeling, where they are from, how far along they are, 
+      They will provide their first name, last name and their address. They will share how they are feeling, where they are from, how far along they are, 
       and any questions or concerns they might have. Your job is to:
       
       1. Highlight any questions from the user in your response and answer them using your 20 years of OBGYN expertise ONLY.
-      2. Highlight all the user information in your response.
-      3. Provide detailed advice and tips to the user in your response. 
+      2. Highlight all the user information in your response including the address and their names.
+      3. Provide detailed advice and tips to the user in your response including specific information regarding their geographical location. 
       User Input:
       Feeling/Comments/Questions/Concerns: ${symptom}
-      Name: ${name}
+      First Name: ${firstName}
+      Last Name: ${lastName}
+      Adress: ${address}
     `;
     console.log("Prompt created:", prompt);
     console.log("API KEY", OPENAI_API_KEY);
@@ -137,9 +141,23 @@ const Page = () => {
         <Text style={[styles.title,{padding: 10}]}>Tell Us About Yourself!</Text>
         <TextInput
                 autoCapitalize="none"
-                placeholder="Full Name"
-                value={name}
-                onChangeText={setName}
+                placeholder="First Name"
+                value={firstName}
+                onChangeText={setFirstName}
+                style={[styles.inputField, {width: screenWidth - 20}]}
+        />
+        <TextInput
+          autoCapitalize="none"
+          placeholder="Last Name"
+          value={lastName}
+          onChangeText={setLastName}
+          style={[styles.inputField, {width: screenWidth - 20}]}
+        />
+        <TextInput
+                autoCapitalize="none"
+                placeholder="Address"
+                value={address}
+                onChangeText={setAddress}
                 style={[styles.inputField, {width: screenWidth - 20}]}
         />
         <TextInput
@@ -167,6 +185,16 @@ const Page = () => {
 }
 
 const styles = StyleSheet.create({
+  input: {
+    flex: 1, // Take equal space for both inputs
+    marginHorizontal: 5, // Add space between the inputs
+    height: 50,
+    borderWidth: 1,
+    borderColor: "#ccc",
+    borderRadius: 10,
+    paddingHorizontal: 10,
+    backgroundColor: "#fff",
+  },
   text: {
     fontSize: 16,
     lineHeight: 24,
